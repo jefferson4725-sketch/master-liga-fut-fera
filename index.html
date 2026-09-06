@@ -4,45 +4,55 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Master Liga Fut-Fera</title>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-
 <style>
 body{margin:0;background:#050505;color:#fff;font-family:Arial}
 header{padding:30px;text-align:center;background:linear-gradient(#ff6a00,#111)}
-h1{color:#ff7a00}
 .card{margin:16px;padding:16px;border:2px solid #ff6a00;border-radius:16px;background:#111}
-.linha{display:flex;justify-content:space-between;padding:10px;border-bottom:1px solid #333}
+.btn{display:block;background:#ff6a00;color:#fff;text-decoration:none;padding:14px;margin:10px 0;border-radius:12px;font-weight:bold;text-align:center}
+.linha{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #333}
 </style>
 </head>
-
 <body>
+
 <header>
 <h1>🐯 MASTER LIGA</h1>
 <h2>FUT-FERA</h2>
 </header>
 
 <div class="card">
-<h2>🏆 Ranking</h2>
-<div id="ranking">Carregando...</div>
+<a class="btn" href="#ranking">🏆 Ranking</a>
+<a class="btn" href="#art">⚽ Artilharia</a>
+<a class="btn" href="#part">📅 Partidas</a>
+<a class="btn" href="#elenco">👥 Elencos</a>
+<a class="btn" href="#stats">📊 Estatísticas</a>
 </div>
 
-<script>
-const ranking = [
-  { nome: "Jeffinho", pontos: 108 },
-  { nome: "Sérgio Dragão", pontos: 108 },
-  { nome: "Igor Fernandes", pontos: 51 },
-  { nome: "Gladson", pontos: 34 },
-  { nome: "Bam_Problema", pontos: 32 }
-];
+<div class="card" id="ranking">
+<h2>🏆 Ranking</h2>
+<div class="linha"><b>1º Jeffinho</b><span>108</span></div>
+<div class="linha"><b>2º Sérgio Dragão</b><span>108</span></div>
+<div class="linha"><b>3º Igor Fernandes</b><span>51</span></div>
+</div>
 
-let html = "";
-ranking.forEach((j, i) => {
-  html += `<div class="linha">
-    <b>${i+1}º ${j.nome}</b>
-    <span>${j.pontos}</span>
-  </div>`;
-});
+<div class="card" id="art">
+<h2>⚽ Artilharia</h2>
+<div class="linha"><b>Jeffinho</b><span>24</span></div>
+</div>
 
-document.getElementById("ranking").innerHTML = html;
-</script>
+<div class="card" id="part">
+<h2>📅 Partidas</h2>
+São Paulo × Grêmio
+</div>
+
+<div class="card" id="elenco">
+<h2>👥 Elencos</h2>
+Em breve
+</div>
+
+<div class="card" id="stats">
+<h2>📊 Estatísticas</h2>
+Em breve
+</div>
+
+</body>
+</html>
