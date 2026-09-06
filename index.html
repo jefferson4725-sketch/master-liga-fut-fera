@@ -28,28 +28,21 @@ h1{color:#ff7a00}
 </div>
 
 <script>
-const supabase = window.supabase.createClient(
-"https://xixcydnqddboqjboszue.supabase.co",
-"sb_publishable_kRX4eWeihn-yw1PTGdFWyw_TKuePNEF"
-);
+const ranking = [
+  { nome: "Jeffinho", pontos: 108 },
+  { nome: "Sérgio Dragão", pontos: 108 },
+  { nome: "Igor Fernandes", pontos: 51 },
+  { nome: "Gladson", pontos: 34 },
+  { nome: "Bam_Problema", pontos: 32 }
+];
 
-async function carregar(){
-const {data}=await supabase
-.from("jogadores")
-.select("*")
-.order("pontos",{ascending:false});
-
-let html="";
-data.forEach((j,i)=>{
-html+=`<div class="linha">
-<b>${i+1}. ${j.nome}</b>
-<span>${j.pontos}</span>
-</div>`;
+let html = "";
+ranking.forEach((j, i) => {
+  html += `<div class="linha">
+    <b>${i+1}º ${j.nome}</b>
+    <span>${j.pontos}</span>
+  </div>`;
 });
-document.getElementById("ranking").innerHTML=html;
-}
-carregar();
-</script>
 
-</body>
-</html>
+document.getElementById("ranking").innerHTML = html;
+</script>
