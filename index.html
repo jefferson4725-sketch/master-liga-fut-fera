@@ -28,59 +28,73 @@ header{padding:30px;text-align:center;background:linear-gradient(#ff6a00,#111)}
 
 
 <div class="card" id="ranking">
-<<div id="listaRanking"></div>
-async function carregarRanking() {
-  const { data } = await supabase
-    .from("jogadores")
-    .select("*")
-    .order("pontos", { ascending: false });
+  <h2>🏆 Ranking</h2>
+  <div id="listaRanking"></div>
+</div>
 
-  const lista = document.getElementById("listaRanking");
-  lista.innerHTML = "";
-
-  data.forEach((j, i) => {
-    lista.innerHTML += `
-      <div class="linha">
-        <b>${i + 1}º ${j.nome}</b>
-        <span>${j.pontos}</span>
-      </div>`;
-  });
-}
-
-carregarRanking();
 <div class="card" id="art">
-<h2>⚽ Artilharia</h2>
-<div class="linha"><b>Jeffinho</b><span>24</span></div>
+  <h2>⚽ Artilharia</h2>
+  <div class="linha"><b>Jeffinho</b><span>24</span></div>
 </div>
 
 <div class="card" id="part">
-<h2>📅 Partidas</h2>
-São Paulo × Grêmio
+  <h2>📅 Partidas</h2>
+  São Paulo × Grêmio
 </div>
 
 <div class="card" id="elenco">
-<h2>👥 Elencos</h2>
-Em breve
+  <h2>👥 Elencos</h2>
+  Em breve
 </div>
 
 <div class="card" id="stats">
-<h2>📊 Estatísticas</h2>
-Em breve
+  <h2>📊 Estatísticas</h2>
+  Em breve
 </div>
+
 <div class="card" id="adm">
   <h2>🔑 Painel ADM</h2>
 
-<input id="nome" placeholder="Nome" style="width:100%;padding:10px;margin:6px 0">
-<input id="pontos" placeholder="Pontos" type="number" style="width:100%;padding:10px;margin:6px 0">
+  <input id="nome" placeholder="Nome" style="width:100%;padding:10px;margin:6px 0">
+  <input id="pontos" placeholder="Pontos" type="number" style="width:100%;padding:10px;margin:6px 0">
 
-<a class="btn" href="#" onclick="salvar()">💾 Salvar Ranking</a>
-63 </div>
+  <a class="btn" href="#" onclick="salvar()">💾 Salvar Ranking</a>
+</div>
 
-64 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-65 <script>
-66 const supabase = window.supabase.createClient(
-67 'https://xixcydnqddboqjboszue.supabase.co',
-68 'sb_publishable_kRX4eWeihn-yw1PTGdFWyw_TKuePNEF'
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script>
+const supabase = window.supabase.createClient(
+  'https://xixcydnqddboqjboszue.supabase.co',
+  'SUA_PUBLISHABLE_KEY'
+);
+
+async function carregarRanking() {
+  const { data } = await supabase
+    .from('jogadores')
+    .select('*')
+    .order('pontos', { ascending: false });
+
+  const lista = document.getElementById('listaRanking');
+  lista.innerHTML = '';
+
+  data.forEach((j, i) => {
+    lista.innerHTML += `<div class="linha"><b>${i+1}º ${j.nome}</b><span>${j.pontos}</span></div>`;
+  });
+}
+
+async function salvar() {
+  const nome = document.getElementById('nome').value;
+  const pontos = Number(document.getElementById('pontos').value);
+
+  await supabase.from('jogadores').insert({ nome, pontos });
+  carregarRanking();
+  alert('Salvo com sucesso!');
+}
+
+carregarRanking();
+</script>
+</body>
+</html>
 69 );
 async function salvar() {
   const nome = document.getElementById("nome").value;
